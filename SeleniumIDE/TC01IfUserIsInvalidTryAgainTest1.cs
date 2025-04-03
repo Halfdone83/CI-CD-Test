@@ -20,6 +20,8 @@ public class TC01IfUserIsInvalidTryAgainTest
 
         string DataDir = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
         Directory.CreateDirectory(DataDir);
+
+        options.AddArgument($"--user-data-dir={DataDir}");
         
         
         driver = new ChromeDriver(options);
