@@ -13,25 +13,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-  steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-  steps:
-    - name: SetUp .Net Core
-      uses: actions/checkout@v3
-      with:
-	dotnet-version: '6.0.x'
-  
-    - name: Install nuget packages
-      run: dontnet restore
-    - name: Build test project
-      run: dontnet build --no-restore
-    - name: Run tests
-      run: dotnet tests	
-		
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0.x'
 
+      - name: Install NuGet packages
+        run: dotnet restore
 
+      - name: Build test project
+        run: dotnet build --no-restore
 
-
-	
+      - name: Run tests
+        run: dotnet test
